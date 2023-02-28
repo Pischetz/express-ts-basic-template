@@ -1,0 +1,16 @@
+# npm
+node_modules
+package-lock.json
+*.log
+*.gz
+
+#vscode
+.vscode
+
+#build
+build
+
+#enviroment
+.env
+.env.local
+
