@@ -12,3 +12,14 @@ Clone your repository and run:
  npm run build
  npm run dev
 ```
+
+## Running with docker
+
+To run this repository you can start it using the Dockerfile.dev file. This will start the development server on port 3000.
+
+```bash
+docker build . -f Dockerfile.dev -t <container-name>
+docker run -p 3001:3001 <container-name>
+```
+
+This is NOT a Dockerfile production ready. It is only for development purposes.

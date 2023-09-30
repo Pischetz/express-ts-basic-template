@@ -1,0 +1,36 @@
+FROM node:lts-alpine
+
+ENV NODE_ENV development
+
+RUN apk add --no-cache \
+  sudo \
+  curl \
+  build-base \
+  g++ \
+  libpng \
+  libpng-dev \
+  jpeg-dev \
+  pango-dev \
+  cairo-dev \
+  giflib-dev \
+  python3
+
+RUN apk add --no-cache terminus-font ttf-inconsolata ttf-dejavu \
+  font-noto font-noto-cjk ttf-font-awesome font-noto-extra  
+
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY . .
+
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+RUN npm install -g npm@10.1.0
+RUN npm install -g nodemon@3.0.1
+RUN npm install -g ts-node@10.9.1
+
+RUN npm install
+
+EXPOSE 3001
+
+CMD [ "npm", "run", "dev" ]
